@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id "com.adarshr.test-logger" version "3.2.0"
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.codeborne:selenide:7.2.2'
+
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    implementation 'org.webjars.npm:utf-8-validate:5.0.10'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.2'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.10.2'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: '1.10.2'
+
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-engine', version: '1.10.2'
+}
+
+test {
+    useJUnitPlatform()
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
+    testLogging {
+        showStandardStreams = true
+    }
+}
